@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Montserrat", sans-serif;
+        font-size: 1rem;
+        color: #404040;
+        line-height: 1.6;
+      }
+      .page {
+        border-style: solid;
+        background-color: darkgray;
+        margin-right: 20px;
+      }
+      .elements {
+        margin-left: 20px;
+        margin-bottom: 40px;
+      }
+    </style>
+  </head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <div class="page">
+      <canvas id="myChart" style="width: 100%; max-width: 700px"></canvas>
+      <div class="elements">
+        <label
+          >Velocity
+          <input type="number" id="myInput" />
+        </label>
+        <label
+          >Angel
+          <input type="number" id="b2" />
+        </label>
+        <button type="submit" id="myBtn">submit</button>
+        <button>reset</button>
+      </div>
+    </div>
+    <script>
+      document.getElementById("myBtn").addEventListener("click", function () {
+        var y = document.getElementsById.b2;
+        var x = document.getElementsById.myInput;
+        var xValues = [];
+        var yValues = [];
+        generateData("Math.((2x^2sin(y)cos(y))9.8)", x, y, 10, 0.5);
+
+        new Chart("myChart", {
+          type: "line",
+          data: {
+            labels: xValues,
+            datasets: [
+              {
+                fill: false,
+                pointRadius: 2,
+                borderColor: "rgba(0,0,255,0.5)",
+                data: yValues,
+              },
+            ],
+          },
+          options: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: "y = x * 2 + 7",
+              fontSize: 16,
+            },
+          },
+        });
+        function generateData(value, i1, i2, i3, step = 1) {
+          for (let x = i1; x <= i3; x += step) {
+            yValues.push(eval(value));
+            xValues.push(x);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
